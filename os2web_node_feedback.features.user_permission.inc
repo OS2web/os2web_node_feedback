@@ -14,9 +14,9 @@ function os2web_node_feedback_user_default_permissions() {
   $permissions['access feedback form'] = array(
     'name' => 'access feedback form',
     'roles' => array(
-      0 => 'Administrator',
-      1 => 'Editor',
-      2 => 'Webmaster',
+      0 => 'os2web_base_role_administrator',
+      1 => 'os2web_base_role_editor',
+      2 => 'os2web_base_role_webmaster',
       3 => 'anonymous user',
       4 => 'authenticated user',
     ),
@@ -27,9 +27,9 @@ function os2web_node_feedback_user_default_permissions() {
   $permissions['administer feedback'] = array(
     'name' => 'administer feedback',
     'roles' => array(
-      0 => 'Administrator',
-      1 => 'Editor',
-      2 => 'Webmaster',
+      0 => 'os2web_base_role_administrator',
+      1 => 'os2web_base_role_editor',
+      2 => 'os2web_base_role_webmaster',
     ),
     'module' => 'feedback',
   );
@@ -38,9 +38,9 @@ function os2web_node_feedback_user_default_permissions() {
   $permissions['view feedback messages'] = array(
     'name' => 'view feedback messages',
     'roles' => array(
-      0 => 'Administrator',
-      1 => 'Editor',
-      2 => 'Webmaster',
+      0 => 'os2web_base_role_administrator',
+      1 => 'os2web_base_role_editor',
+      2 => 'os2web_base_role_webmaster',
     ),
     'module' => 'feedback',
   );
