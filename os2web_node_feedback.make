@@ -20,3 +20,6 @@ projects[strongarm][version] = "2.0"
 
 projects[feedback][subdir] = "contrib"
 projects[feedback][version] = "2.x-dev"
+
+projects[honeypot][subdir] = "contrib"
+projects[honeypot][version] = "1.14"
