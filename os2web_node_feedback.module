@@ -88,7 +88,9 @@ function os2web_node_feedback_form_os2web_settings_settings_form_validate($form,
  */
 function os2web_node_feedback_form_alter(&$form, &$form_state) {
   if ($form['#id'] === 'feedback-form') {
-    honeypot_add_form_protection($form, $form_state, array('honeypot'));
+    if (module_exists('honeypot')) {
+      honeypot_add_form_protection($form, $form_state, array('honeypot'));
+    }
   }
 }
 
