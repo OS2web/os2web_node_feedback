@@ -7,6 +7,35 @@
 
 include_once 'os2web_node_feedback.features.inc';
 
+
+/**
+ * Implements hook_menu().
+ */
+function os2web_node_feedback_menu() {
+  $items = array();
+
+  $items['admin/config/os2web_node_feedback'] = array(
+    'title' => 'OS2Web Node feedback',
+    'position' => 'right',
+    'weight' => -15,
+    'access arguments' => array('administer os2web'),
+    'page callback' => 'system_admin_menu_block_page',
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  $items['admin/config/os2web_node_feedback/settings'] = array(
+    'title' => 'Settings',
+    'description' => 'Configure OS2Web Node feedback',
+    'access arguments' => array('administer os2web'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('os2web_node_feedback_settings'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
 /**
  * Implements hook_feedback_insert().
  */
@@ -60,8 +89,9 @@ function os2web_node_feedback_feedback_insert($entry) {
 /**
  * Implements hook_FORM_alter().
  */
-function os2web_node_feedback_form_os2web_settings_settings_form_alter(&$form, &$form_state) {
-  // MM configuration.
+function os2web_node_feedback_settings() {
+  $form = array();
+
   $form['feedback'] = array(
     '#type' => 'fieldset',
   );
@@ -72,6 +102,8 @@ function os2web_node_feedback_form_os2web_settings_settings_form_alter(&$form, &
     '#default_value' => variable_get('os2web_node_feedback_mail'),
   );
   $form['#validate'][] = 'os2web_node_feedback_form_os2web_settings_settings_form_validate';
+
+  return system_settings_form($form);
 }
 
 /**
@@ -98,7 +130,6 @@ function os2web_node_feedback_form_alter(&$form, &$form_state) {
  * Implements hook_os2web_help().
  */
 function os2web_node_feedback_os2web_help($sections) {
-
   // Content types.
   $sections['configuration'] = t('<p><b>Feedback:</b> Enable the Feedback form to send you emails when feedback is recieved. Edit the <a href="@url" target="_blank">OS2web Settings</a> to add your email.</p>', array('@url' => url('admin/config/os2web/settings#edit-feedback')));
   return $sections;
